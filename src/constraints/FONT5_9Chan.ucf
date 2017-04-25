@@ -1,0 +1,482 @@
+#Timing & Constraints: 
+#The minimal constraints that a design should have are a PERIOD constraint for each clock, a global OFFSET IN constraint, and a global OFFSET OUT constraint. 
+#More details can be found by selecting Help -> Software Manuals -> Constraints Guide
+
+NET "FONT5_detect" LOC = "AP12";
+
+### AUX OUT A and B
+##NET "auxOutA" LOC = "W6";
+##NET "auxOutB" LOC = "Y6";
+#NET "auxOutA1" LOC = "W6";
+#NET "auxOutB1" LOC = "Y6";
+#NET "auxOutA2" LOC = "W10";
+#NET "auxOutB2" LOC = "W9";
+
+## AUX OUT A and B & AUX_IN A and B
+#NET "auxOutA" LOC = "W6"; // FONT5
+#NET "auxOutB" LOC = "Y6"; // FONT5
+NET "auxOutA1" LOC = "W6"; // FONT5
+NET "auxOutB1" LOC = "Y6"; // FONT5
+NET "auxOutA2" LOC = "W10"; // FONT5A ONLY
+NET "auxOutB2" LOC = "W9"; // FONT5A ONLY
+NET "auxOutC" LOC = "U8"; // FONT5A ONLY
+
+
+#NET "auxOutD" LOC = "V10"; // FONT5A ONLY
+#NET "auxOutE" LOC = "V9"; // FONT5A ONLY
+NET "auxInA" LOC = "G8"; //FONT5
+#NET "auxInB" LOC = "H8"; //FONT5
+#NET "auxInA" LOC = "G8"; //FONT5A
+#NET "auxInB" LOC = "G13"; //FONT5A
+
+# 357MHz input
+##FastClkA
+#NET "FastClkA_n" LOC = "AG20";
+#NET "FastClkA_p" LOC = "AG21";
+##FastClkB
+#NET "FastClkB_n" LOC = "AH19";
+#NET "FastClkB_p" LOC = "AH20";
+NET "clk357_n" LOC = "AH19";
+NET "clk357_p" LOC = "AH20";
+NET "clk357" TNM_NET = "clk357";
+TIMESPEC "TS_clk357" = PERIOD "clk357" 2.8ns HIGH 50 %;
+
+#INST "K1_FB/delay_loop" TNM ="start_K1_dl";
+#INST "K1_FB/feedback_mult_add" TNM = "end_K1_dl";
+#
+#TIMESPEC "TS_dl1" = FROM "start_K1_dl" TO "end_K1_dl" TS_clk357*50;
+#
+#INST "K2_FB/delay_loop" TNM ="start_K2_dl";
+#INST "K2_FB/feedback_mult_add" TNM = "end_K2_dl";
+#
+#TIMESPEC "TS_dl2" = FROM "start_K2_dl" TO "end_K2_dl" TS_clk357*50;
+
+NET "DirIOB" LOC = "H20"; //added for testing Doug Special 16/6/16
+
+# 40MHz input
+NET "clk40_s" LOC = "V7";
+NET "clk40_s" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "clk40" TNM_NET = "clk40";
+TIMESPEC "TS_clk40" = PERIOD "clk40" 25ns HIGH 50 %;
+
+## Trigger input
+#NET "trig" LOC = "G8";
+#
+## Ring clock input
+#NET "clk2_16_s" LOC = "H8";
+
+# P1 XDIF ADC
+NET "p1_xdif_drdy_n" LOC = "D10";
+NET "p1_xdif_drdy_p" LOC = "D11";
+
+NET "p1_xdif_datain_n<0>" LOC = "E28";
+NET "p1_xdif_datain_n<1>" LOC = "E27";
+NET "p1_xdif_datain_n<2>" LOC = "G27";
+NET "p1_xdif_datain_n<3>" LOC = "F26";
+NET "p1_xdif_datain_n<4>" LOC = "G26";
+NET "p1_xdif_datain_n<5>" LOC = "M26";
+NET "p1_xdif_datain_n<6>" LOC = "L26";
+NET "p1_xdif_datain_n<7>" LOC = "K27";
+NET "p1_xdif_datain_n<8>" LOC = "L24";
+NET "p1_xdif_datain_n<9>" LOC = "J27";
+NET "p1_xdif_datain_n<10>" LOC = "J24";
+NET "p1_xdif_datain_n<11>" LOC = "H24";
+NET "p1_xdif_datain_n<12>" LOC = "H28";
+
+NET "p1_xdif_datain_p<0>" LOC = "F28";
+NET "p1_xdif_datain_p<1>" LOC = "E26";
+NET "p1_xdif_datain_p<2>" LOC = "H27";
+NET "p1_xdif_datain_p<3>" LOC = "F25";
+NET "p1_xdif_datain_p<4>" LOC = "G25";
+NET "p1_xdif_datain_p<5>" LOC = "M25";
+NET "p1_xdif_datain_p<6>" LOC = "L25";
+NET "p1_xdif_datain_p<7>" LOC = "K26";
+NET "p1_xdif_datain_p<8>" LOC = "K24";
+NET "p1_xdif_datain_p<9>" LOC = "J26";
+NET "p1_xdif_datain_p<10>" LOC = "J25";
+NET "p1_xdif_datain_p<11>" LOC = "H25";
+NET "p1_xdif_datain_p<12>" LOC = "G28";
+
+# P1 YDIF ADC
+NET "p1_ydif_drdy_n" LOC = "B12";
+NET "p1_ydif_drdy_p" LOC = "A13";
+
+NET "p1_ydif_datain_n<0>" LOC = "J31";
+NET "p1_ydif_datain_n<1>" LOC = "E31";
+NET "p1_ydif_datain_n<2>" LOC = "F30";
+NET "p1_ydif_datain_n<3>" LOC = "E29";
+NET "p1_ydif_datain_n<4>" LOC = "G31";
+NET "p1_ydif_datain_n<5>" LOC = "T24";
+NET "p1_ydif_datain_n<6>" LOC = "P24";
+NET "p1_ydif_datain_n<7>" LOC = "P25";
+NET "p1_ydif_datain_n<8>" LOC = "P26";
+NET "p1_ydif_datain_n<9>" LOC = "N27";
+NET "p1_ydif_datain_n<10>" LOC = "L28";
+NET "p1_ydif_datain_n<11>" LOC = "L29";
+NET "p1_ydif_datain_n<12>" LOC = "J29";
+
+NET "p1_ydif_datain_p<0>" LOC = "J30";
+NET "p1_ydif_datain_p<1>" LOC = "F31";
+NET "p1_ydif_datain_p<2>" LOC = "G30";
+NET "p1_ydif_datain_p<3>" LOC = "F29";
+NET "p1_ydif_datain_p<4>" LOC = "H30";
+NET "p1_ydif_datain_p<5>" LOC = "R24";
+NET "p1_ydif_datain_p<6>" LOC = "N24";
+NET "p1_ydif_datain_p<7>" LOC = "N25";
+NET "p1_ydif_datain_p<8>" LOC = "P27";
+NET "p1_ydif_datain_p<9>" LOC = "M27";
+NET "p1_ydif_datain_p<10>" LOC = "K28";
+NET "p1_ydif_datain_p<11>" LOC = "K29";
+NET "p1_ydif_datain_p<12>" LOC = "H29";
+
+# P1 SUM ADC
+NET "p1_sum_drdy_n" LOC = "B13";
+NET "p1_sum_drdy_p" LOC = "C13";
+
+NET "p1_sum_datain_n<0>" LOC = "M30";
+NET "p1_sum_datain_n<1>" LOC = "U28";
+NET "p1_sum_datain_n<2>" LOC = "U26";
+NET "p1_sum_datain_n<3>" LOC = "R27";
+NET "p1_sum_datain_n<4>" LOC = "U25";
+NET "p1_sum_datain_n<5>" LOC = "K31";
+NET "p1_sum_datain_n<6>" LOC = "N29";
+NET "p1_sum_datain_n<7>" LOC = "M31";
+NET "p1_sum_datain_n<8>" LOC = "P30";
+NET "p1_sum_datain_n<9>" LOC = "R28";
+NET "p1_sum_datain_n<10>" LOC = "R31";
+NET "p1_sum_datain_n<11>" LOC = "T30";
+NET "p1_sum_datain_n<12>" LOC = "T29";
+
+NET "p1_sum_datain_p<0>" LOC = "L30";
+NET "p1_sum_datain_p<1>" LOC = "U27";
+NET "p1_sum_datain_p<2>" LOC = "T26";
+NET "p1_sum_datain_p<3>" LOC = "R26";
+NET "p1_sum_datain_p<4>" LOC = "T25";
+NET "p1_sum_datain_p<5>" LOC = "L31";
+NET "p1_sum_datain_p<6>" LOC = "P29";
+NET "p1_sum_datain_p<7>" LOC = "N30";
+NET "p1_sum_datain_p<8>" LOC = "P31";
+NET "p1_sum_datain_p<9>" LOC = "R29";
+NET "p1_sum_datain_p<10>" LOC = "T31";
+NET "p1_sum_datain_p<11>" LOC = "U30";
+NET "p1_sum_datain_p<12>" LOC = "T28";
+
+#P1 ADC controls
+INST p1_adc_block/adc_clk_odelay LOC = IODELAY_X2Y204;
+NET "p1_adc_clk_n" LOC = "E13";
+NET "p1_adc_clk_p" LOC = "E12";
+NET "adc_powerdown" LOC = "E8" | DRIVE = 24  | SLEW = FAST;
+
+# P2 XDIF ADC
+NET "p2_xdif_drdy_n" LOC = "C12";
+NET "p2_xdif_drdy_p" LOC = "D12";
+
+NET "p2_xdif_datain_n<0>" LOC = "E33";
+NET "p2_xdif_datain_n<1>" LOC = "D34";
+NET "p2_xdif_datain_n<2>" LOC = "D32";
+NET "p2_xdif_datain_n<3>" LOC = "C33";
+NET "p2_xdif_datain_n<4>" LOC = "A33";
+NET "p2_xdif_datain_n<5>" LOC = "E34";
+NET "p2_xdif_datain_n<6>" LOC = "F34";
+NET "p2_xdif_datain_n<7>" LOC = "K34";
+NET "p2_xdif_datain_n<8>" LOC = "L33";
+NET "p2_xdif_datain_n<9>" LOC = "K33";
+NET "p2_xdif_datain_n<10>" LOC = "G32";
+NET "p2_xdif_datain_n<11>" LOC = "H34";
+NET "p2_xdif_datain_n<12>" LOC = "H33";
+
+NET "p2_xdif_datain_p<0>" LOC = "E32";
+NET "p2_xdif_datain_p<1>" LOC = "C34";
+NET "p2_xdif_datain_p<2>" LOC = "C32";
+NET "p2_xdif_datain_p<3>" LOC = "B33";
+NET "p2_xdif_datain_p<4>" LOC = "B32";
+NET "p2_xdif_datain_p<5>" LOC = "F33";
+NET "p2_xdif_datain_p<6>" LOC = "G33";
+NET "p2_xdif_datain_p<7>" LOC = "L34";
+NET "p2_xdif_datain_p<8>" LOC = "M32";
+NET "p2_xdif_datain_p<9>" LOC = "K32";
+NET "p2_xdif_datain_p<10>" LOC = "H32";
+NET "p2_xdif_datain_p<11>" LOC = "J34";
+NET "p2_xdif_datain_p<12>" LOC = "J32";
+
+# P2 YDIF ADC
+NET "p2_ydif_drdy_n" LOC = "AA10";
+NET "p2_ydif_drdy_p" LOC = "AB10";
+
+NET "p2_ydif_datain_n<0>" LOC = "R34";
+NET "p2_ydif_datain_n<1>" LOC = "R33";
+NET "p2_ydif_datain_n<2>" LOC = "N34";
+NET "p2_ydif_datain_n<3>" LOC = "P32";
+NET "p2_ydif_datain_n<4>" LOC = "N33";
+NET "p2_ydif_datain_n<5>" LOC = "T34";
+NET "p2_ydif_datain_n<6>" LOC = "U31";
+NET "p2_ydif_datain_n<7>" LOC = "V32";
+NET "p2_ydif_datain_n<8>" LOC = "W34";
+NET "p2_ydif_datain_n<9>" LOC = "W32";
+NET "p2_ydif_datain_n<10>" LOC = "Y34";
+NET "p2_ydif_datain_n<11>" LOC = "Y33";
+NET "p2_ydif_datain_n<12>" LOC = "AB32";
+
+NET "p2_ydif_datain_p<0>" LOC = "T33";
+NET "p2_ydif_datain_p<1>" LOC = "R32";
+NET "p2_ydif_datain_p<2>" LOC = "P34";
+NET "p2_ydif_datain_p<3>" LOC = "N32";
+NET "p2_ydif_datain_p<4>" LOC = "M33";
+NET "p2_ydif_datain_p<5>" LOC = "U33";
+NET "p2_ydif_datain_p<6>" LOC = "U32";
+NET "p2_ydif_datain_p<7>" LOC = "V33";
+NET "p2_ydif_datain_p<8>" LOC = "V34";
+NET "p2_ydif_datain_p<9>" LOC = "Y32";
+NET "p2_ydif_datain_p<10>" LOC = "AA34";
+NET "p2_ydif_datain_p<11>" LOC = "AA33";
+NET "p2_ydif_datain_p<12>" LOC = "AC32";
+
+# P2 SUM ADC
+NET "p2_sum_drdy_n" LOC = "AN14";
+NET "p2_sum_drdy_p" LOC = "AP14";
+
+NET "p2_sum_datain_n<0>" LOC = "AD34";
+NET "p2_sum_datain_n<1>" LOC = "AD32";
+NET "p2_sum_datain_n<2>" LOC = "AF34";
+NET "p2_sum_datain_n<3>" LOC = "AE33";
+NET "p2_sum_datain_n<4>" LOC = "AG33";
+NET "p2_sum_datain_n<5>" LOC = "AJ34";
+NET "p2_sum_datain_n<6>" LOC = "AG32";
+NET "p2_sum_datain_n<7>" LOC = "AJ32";
+NET "p2_sum_datain_n<8>" LOC = "AK34";
+NET "p2_sum_datain_n<9>" LOC = "AL34";
+NET "p2_sum_datain_n<10>" LOC = "AM33";
+NET "p2_sum_datain_n<11>" LOC = "AN34";
+NET "p2_sum_datain_n<12>" LOC = "AN32";
+
+NET "p2_sum_datain_p<0>" LOC = "AC34";
+NET "p2_sum_datain_p<1>" LOC = "AE32";
+NET "p2_sum_datain_p<2>" LOC = "AE34";
+NET "p2_sum_datain_p<3>" LOC = "AF33";
+NET "p2_sum_datain_p<4>" LOC = "AH33";
+NET "p2_sum_datain_p<5>" LOC = "AH34";
+NET "p2_sum_datain_p<6>" LOC = "AH32";
+NET "p2_sum_datain_p<7>" LOC = "AK32";
+NET "p2_sum_datain_p<8>" LOC = "AK33";
+NET "p2_sum_datain_p<9>" LOC = "AL33";
+NET "p2_sum_datain_p<10>" LOC = "AM32";
+NET "p2_sum_datain_p<11>" LOC = "AN33";
+NET "p2_sum_datain_p<12>" LOC = "AP32";
+
+#P2 ADC controls
+INST p2_adc_block/adc_clk_odelay LOC = IODELAY_X2Y208;
+NET "p2_adc_clk_n" LOC = "E11";
+NET "p2_adc_clk_p" LOC = "F11";
+
+# P3 XDIF ADC
+NET "p3_xdif_drdy_n" LOC = "AE11";
+NET "p3_xdif_drdy_p" LOC = "AF11";
+
+NET "p3_xdif_datain_n<0>" LOC = "V27";
+NET "p3_xdif_datain_n<1>" LOC = "Y28";
+NET "p3_xdif_datain_n<2>" LOC = "AC29";
+NET "p3_xdif_datain_n<3>" LOC = "AC30";
+NET "p3_xdif_datain_n<4>" LOC = "AE31";
+NET "p3_xdif_datain_n<5>" LOC = "V24";
+NET "p3_xdif_datain_n<6>" LOC = "V25";
+NET "p3_xdif_datain_n<7>" LOC = "W26";
+NET "p3_xdif_datain_n<8>" LOC = "V30";
+NET "p3_xdif_datain_n<9>" LOC = "W31";
+NET "p3_xdif_datain_n<10>" LOC = "V29";
+NET "p3_xdif_datain_n<11>" LOC = "AA31";
+NET "p3_xdif_datain_n<12>" LOC = "AA30";
+
+NET "p3_xdif_datain_p<0>" LOC = "V28";
+NET "p3_xdif_datain_p<1>" LOC = "Y29";
+NET "p3_xdif_datain_p<2>" LOC = "AD30";
+NET "p3_xdif_datain_p<3>" LOC = "AB30";
+NET "p3_xdif_datain_p<4>" LOC = "AD31";
+NET "p3_xdif_datain_p<5>" LOC = "W24";
+NET "p3_xdif_datain_p<6>" LOC = "W25";
+NET "p3_xdif_datain_p<7>" LOC = "Y26";
+NET "p3_xdif_datain_p<8>" LOC = "W30";
+NET "p3_xdif_datain_p<9>" LOC = "Y31";
+NET "p3_xdif_datain_p<10>" LOC = "W29";
+NET "p3_xdif_datain_p<11>" LOC = "AB31";
+NET "p3_xdif_datain_p<12>" LOC = "AA29";
+
+# P3 YDIF ADC
+NET "p3_ydif_drdy_n" LOC = "AG11";
+NET "p3_ydif_drdy_p" LOC = "AG10";
+
+NET "p3_ydif_datain_n<0>" LOC = "AF31";
+NET "p3_ydif_datain_n<1>" LOC = "AK31";
+NET "p3_ydif_datain_n<2>" LOC = "AH30";
+NET "p3_ydif_datain_n<3>" LOC = "AG30";
+NET "p3_ydif_datain_n<4>" LOC = "AF30";
+NET "p3_ydif_datain_n<5>" LOC = "AE28";
+NET "p3_ydif_datain_n<6>" LOC = "AE29";
+NET "p3_ydif_datain_n<7>" LOC = "AC28";
+NET "p3_ydif_datain_n<8>" LOC = "AC27";
+NET "p3_ydif_datain_n<9>" LOC = "AB26";
+NET "p3_ydif_datain_n<10>" LOC = "AA26";
+NET "p3_ydif_datain_n<11>" LOC = "AA24";
+NET "p3_ydif_datain_n<12>" LOC = "AB28";
+
+NET "p3_ydif_datain_p<0>" LOC = "AG31";
+NET "p3_ydif_datain_p<1>" LOC = "AJ31";
+NET "p3_ydif_datain_p<2>" LOC = "AJ30";
+NET "p3_ydif_datain_p<3>" LOC = "AH29";
+NET "p3_ydif_datain_p<4>" LOC = "AF29";
+NET "p3_ydif_datain_p<5>" LOC = "AF28";
+NET "p3_ydif_datain_p<6>" LOC = "AD29";
+NET "p3_ydif_datain_p<7>" LOC = "AD27";
+NET "p3_ydif_datain_p<8>" LOC = "AB27";
+NET "p3_ydif_datain_p<9>" LOC = "AB25";
+NET "p3_ydif_datain_p<10>" LOC = "AA25";
+NET "p3_ydif_datain_p<11>" LOC = "Y24";
+NET "p3_ydif_datain_p<12>" LOC = "AA28";
+
+# P3 SUM ADC
+NET "p3_sum_drdy_n" LOC = "AF10";
+NET "p3_sum_drdy_p" LOC = "AF9";
+
+NET "p3_sum_datain_n<0>" LOC = "AJ29";
+NET "p3_sum_datain_n<1>" LOC = "AG28";
+NET "p3_sum_datain_n<2>" LOC = "AJ26";
+NET "p3_sum_datain_n<3>" LOC = "AK28";
+NET "p3_sum_datain_n<4>" LOC = "AK26";
+NET "p3_sum_datain_n<5>" LOC = "AG27";
+NET "p3_sum_datain_n<6>" LOC = "AJ25";
+NET "p3_sum_datain_n<7>" LOC = "AF26";
+NET "p3_sum_datain_n<8>" LOC = "AG25";
+NET "p3_sum_datain_n<9>" LOC = "AE27";
+NET "p3_sum_datain_n<10>" LOC = "AE24";
+NET "p3_sum_datain_n<11>" LOC = "AD25";
+NET "p3_sum_datain_n<12>" LOC = "AC24";
+
+NET "p3_sum_datain_p<0>" LOC = "AK29";
+NET "p3_sum_datain_p<1>" LOC = "AH28";
+NET "p3_sum_datain_p<2>" LOC = "AH27";
+NET "p3_sum_datain_p<3>" LOC = "AK27";
+NET "p3_sum_datain_p<4>" LOC = "AJ27";
+NET "p3_sum_datain_p<5>" LOC = "AG26";
+NET "p3_sum_datain_p<6>" LOC = "AH25";
+NET "p3_sum_datain_p<7>" LOC = "AF25";
+NET "p3_sum_datain_p<8>" LOC = "AF24";
+NET "p3_sum_datain_p<9>" LOC = "AE26";
+NET "p3_sum_datain_p<10>" LOC = "AD24";
+NET "p3_sum_datain_p<11>" LOC = "AD26";
+NET "p3_sum_datain_p<12>" LOC = "AC25";
+
+#P3 ADC controls
+INST p3_adc_block/adc_clk_odelay LOC = IODELAY_X2Y234;
+NET "p3_adc_clk_n" LOC = "G10";
+NET "p3_adc_clk_p" LOC = "F10";
+
+
+#DAC1
+NET "dac1_clk" LOC = "K12" | DRIVE = 24  | SLEW = FAST;
+NET "dac1_out<0>" LOC = "K13";
+NET "dac1_out<1>" LOC = "J12";
+NET "dac1_out<2>" LOC = "H12";
+NET "dac1_out<3>" LOC = "K16";
+NET "dac1_out<4>" LOC = "J15";
+NET "dac1_out<5>" LOC = "H13";
+NET "dac1_out<6>" LOC = "J14";
+NET "dac1_out<7>" LOC = "H14";
+NET "dac1_out<8>" LOC = "H15";
+NET "dac1_out<9>" LOC = "G15";
+NET "dac1_out<10>" LOC = "G16";
+NET "dac1_out<11>" LOC = "J16";
+NET "dac1_out<12>" LOC = "J17";
+
+#DAC2
+NET "dac2_clk" LOC = "J22" | DRIVE = 24  | SLEW = FAST;
+NET "dac2_out<0>" LOC = "K21";
+NET "dac2_out<1>" LOC = "L21";
+NET "dac2_out<2>" LOC = "L20";
+NET "dac2_out<3>" LOC = "K19";
+NET "dac2_out<4>" LOC = "L19";
+NET "dac2_out<5>" LOC = "J19";
+NET "dac2_out<6>" LOC = "K18";
+NET "dac2_out<7>" LOC = "L18";
+NET "dac2_out<8>" LOC = "K17";
+NET "dac2_out<9>" LOC = "L16";
+NET "dac2_out<10>" LOC = "L15";
+NET "dac2_out<11>" LOC = "L14";
+NET "dac2_out<12>" LOC = "K14";
+
+
+#RS232
+NET "rs232_out" LOC = "Y7" | DRIVE = 24  | SLEW = FAST;
+NET "rs232_in" LOC = "AB5" | DRIVE = 24  | SLEW = FAST;
+
+#LEDs
+NET "led0_out" LOC = "K11";
+NET "led1_out" LOC = "J11";
+NET "led2_out" LOC = "L10";
+
+#Amp trigger (J30 - AUX OUT A)
+#NET "amp_trig" LOC = "W6" | DRIVE = 24  | SLEW = FAST; //FONT5
+#NET "amp_trig2" LOC = "Y6" | DRIVE = 24  | SLEW = FAST; //FONT5
+#NET "amp_trig" LOC = "W10" | DRIVE = 24  | SLEW = FAST; //FONT5A
+#NET "amp_trig2" LOC = "W9" | DRIVE = 24  | SLEW = FAST; //FONT5A
+
+#Trim DACs
+NET "trim_cs_ld" LOC = "Y11" | DRIVE = 24  | SLEW = FAST;
+NET "trim_sck" LOC = "AK6" | DRIVE = 24  | SLEW = FAST;
+NET "trim_sdi" LOC = "W11" | DRIVE = 24  | SLEW = FAST;
+
+#Digital input thresholds and signals
+NET "diginput1A" LOC = "AE7";
+NET "diginput1B" LOC = "AF6";
+NET "diginput1"  LOC = "AE6";
+NET "diginput2A" LOC = "AF5";
+NET "diginput2B" LOC = "AH5";
+NET "diginput2"  LOC = "AG5";
+
+#Temp
+#NET "diginput2_loopback" LOC = "Y6" | DRIVE = 24  | SLEW = FAST;
+#NET "trim_ld_mon" LOC = "H19" | DRIVE = 24  | SLEW = FAST;
+#NET "trim_data_mon" LOC = "H20" | DRIVE = 24  | SLEW = FAST;
+
+#DAC3
+#NET "dac3_clk" LOC = "AF15" | DRIVE = 24  | SLEW = FAST;
+#NET "dac3_out<0>" LOC = "AE16";
+#NET "dac3_out<1>" LOC = "AF16";
+#NET "dac3_out<2>" LOC = "AE17";
+#NET "dac3_out<3>" LOC = "AG18";
+#NET "dac3_out<4>" LOC = "AF19";
+#NET "dac3_out<5>" LOC = "AE18";
+#NET "dac3_out<6>" LOC = "AF18";
+#NET "dac3_out<7>" LOC = "AE19";
+#NET "dac3_out<8>" LOC = "AD19";
+#NET "dac3_out<9>" LOC = "AF20";
+#NET "dac3_out<10>" LOC = "AF21";
+#NET "dac3_out<11>" LOC = "AD20";
+#NET "dac3_out<12>" LOC = "AE21";
+#
+##DAC4
+#NET "dac4_clk" LOC = "AH17" | DRIVE = 24  | SLEW = FAST;
+#NET "dac4_out<0>" LOC = "AG16";
+#NET "dac4_out<1>" LOC = "AH15";
+#NET "dac4_out<2>" LOC = "AG15";
+#NET "dac4_out<3>" LOC = "AH14";
+#NET "dac4_out<4>" LOC = "AH13";
+#NET "dac4_out<5>" LOC = "AG13";
+#NET "dac4_out<6>" LOC = "AH12";
+#NET "dac4_out<7>" LOC = "AF14";
+#NET "dac4_out<8>" LOC = "AE14";
+#NET "dac4_out<9>" LOC = "AG12";
+#NET "dac4_out<10>" LOC = "AF13";
+#NET "dac4_out<11>" LOC = "AE13";
+#NET "dac4_out<12>" LOC = "AE12";
+
+#INST "IDELAYCTRL1" LOC="IDELAYCTRL_X0Y0";
+#INST "IDELAYCTRL2" LOC="IDELAYCTRL_X0Y1";
+#INST "IDELAYCTRL3" LOC="IDELAYCTRL_X0Y2";
+#INST "IDELAYCTRL4" LOC="IDELAYCTRL_X0Y3";
+#INST "IDELAYCTRL5" LOC="IDELAYCTRL_X0Y4";
+#INST "IDELAYCTRL6" LOC="IDELAYCTRL_X0Y5";
+#INST "IDELAYCTRL7" LOC="IDELAYCTRL_X2Y0";
+#INST "IDELAYCTRL8" LOC="IDELAYCTRL_X1Y1";
+#INST "IDELAYCTRL9" LOC="IDELAYCTRL_X1Y2";
+#INST "IDELAYCTRL10" LOC="IDELAYCTRL_X1Y3";
+#INST "IDELAYCTRL11" LOC="IDELAYCTRL_X1Y4";
+#INST "IDELAYCTRL12" LOC="IDELAYCTRL_X2Y5";

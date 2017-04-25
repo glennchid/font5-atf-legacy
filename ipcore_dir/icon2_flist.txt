@@ -1,0 +1,16 @@
+# Output products list for <icon2>
+icon2.asy
+icon2.constraints\icon2.ucf
+icon2.constraints\icon2.xdc
+icon2.gise
+icon2.ngc
+icon2.sym
+icon2.ucf
+icon2.v
+icon2.veo
+icon2.xco
+icon2.xdc
+icon2.xise
+icon2_flist.txt
+icon2_readme.txt
+icon2_xmdf.tcl

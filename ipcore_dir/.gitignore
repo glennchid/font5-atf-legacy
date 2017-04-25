@@ -1,0 +1,8 @@
+_xmsgs/
+tmp/
+create*.tcl
+edit*.tcl
+update*.tcl
+gen*.tcl
+*.cgc
+coregen.*

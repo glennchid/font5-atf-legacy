@@ -1,0 +1,18 @@
+# Output products list for <vio2>
+_xmsgs\pn_parser.xmsgs
+vio2.asy
+vio2.cdc
+vio2.constraints\vio2.ucf
+vio2.constraints\vio2.xdc
+vio2.gise
+vio2.ngc
+vio2.sym
+vio2.ucf
+vio2.v
+vio2.veo
+vio2.xco
+vio2.xdc
+vio2.xise
+vio2_flist.txt
+vio2_readme.txt
+vio2_xmdf.tcl
