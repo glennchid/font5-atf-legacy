@@ -1,0 +1,15 @@
+# Output products list for <FIR_SCALE>
+FIR_SCALE.asy
+FIR_SCALE.gise
+FIR_SCALE.ngc
+FIR_SCALE.sym
+FIR_SCALE.v
+FIR_SCALE.veo
+FIR_SCALE.xco
+FIR_SCALE.xise
+FIR_SCALE\doc\mult_gen_ds255.pdf
+FIR_SCALE\doc\mult_gen_v11_2_readme.txt
+FIR_SCALE\doc\mult_gen_v11_2_vinfo.html
+FIR_SCALE_flist.txt
+FIR_SCALE_xmdf.tcl
+_xmsgs\pn_parser.xmsgs
